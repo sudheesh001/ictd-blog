@@ -18,6 +18,7 @@ summary: In many rural contexts around the world, close relationships within clu
 {% endif %}
 
 ##### By: [Sudheesh Singanamalla](https://sudheesh.info/), [Esther Jang](https://homes.cs.washington.edu/~infrared/) on {{page.date | date_to_string }}
+##### Acknowledgements: [Matthew Johnson](https://matt9j.net/), [Spencer Sevilla](https://spencersevilla.com/bio/), [Kurtis Heimerl](https://kurti.sh/)
 
 ---
 
