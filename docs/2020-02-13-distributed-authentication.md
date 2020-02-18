@@ -75,7 +75,7 @@ Building dAuth has been a fun experience with a lot of learning in the process. 
 1. Successfully perform an authentication where the UE attaches to a different EPC which uses previously generated vectors provided by the home EPC.
 2. Successfully able to create and deploy a blockchain network running PoET consensus and corresponding transaction processor which performs reads and updates on the HSS by reading and writing authentication vectors into the database.
 
-![title](/img/example1.png)
+![Benchmarks](/img/benchmark.png)
 
 ## Future Work and Next Steps
 
