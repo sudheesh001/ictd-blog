@@ -2,7 +2,7 @@
 layout: default
 title: Home
 nav_order: 1
-description: "Dejournal is a platform for publishing scientific preprints on blockchain. Scientific papers are freely available and kept forever."
+description: "Welcome to the Blog Posts Home. This is Sudheesh's home for research work."
 permalink: /
 has_children: false
 ---
