@@ -1,0 +1,76 @@
+---
+layout: default
+title: The Cost of Contact Tracing & Quarantine Enforcement Applications
+subtitle: Lateral Surveillance, Differences in understanding of privacy and Cryptographically insecure implementations across the world
+nav_order: 10
+date: 04-06-2020
+categories: ICTD, Privacy, Governance, Opinion
+nav_exclude: true
+summary: Several nations and communities across the world seeking to minimize death tolls from COVID-19, are resorting to _mobile based, contact tracing technologies_ as a key tool in mitigating the pandemic. The use of the TTT framework (Test, Trace, and Timeout) could prove to be among the most effective tools in reducing transmission of the virus worldwide. As most of the world decides to _get back to work_, the need for such contact tracing techniques to isolate and quarantine individuals who might pose the risk of transmission due to their potential contact with people infected is very important to avoid a second wave of infections.
+
+---
+
+# {{page.title}}
+### {{page.subtitle}}
+
+{% if page.categories %}
+{% assign categories = page.categories | split: ',' %}
+{% for category in categories %}
+{{category}}
+{: .label }
+{% endfor %}
+{% endif %}
+
+##### By: [Sudheesh Singanamalla](https://sudheesh.info/) on {{page.date | date_to_string }}
+
+---
+
+Several nations and communities across the world seeking to minimize death tolls from COVID-19, are resorting to _mobile based, contact tracing technologies_ as a key tool in mitigating the pandemic. The use of the TTT framework (Test, Trace, and Timeout) could prove to be among the most effective tools in reducing transmission of the virus worldwide. As most of the world decides to _get back to work_, the need for such contact tracing techniques to isolate and quarantine individuals who might pose the risk of transmission due to their potential contact with people infected is very important to avoid a second wave of infections. Governments and Health care professionals across the world, are in a pursuit for effective tools for crisis management and balancing the citizens' rights to privacy, confidentiality and protecting the community.
+
+### So What is Contact Tracing?
+
+Contact tracing is an effort to track down everyone who might have been infected by a recently diagnosed person and inform the contacts the person could have had close contact. As a part of the process, a manual contact tracer, with the experience and training to do so, reaches out to the infected person and provides them with support, and information to help them understand their risk, begin processes to isolate them and gather enough information about their whereabouts over the last _N_ days i.e. where they visited, whom they were in physical contact with and gather the contact information of potential contacts. This process is recursively done to obtain the entire web of connections. Given the strenuous nature of the problem, and the lack of enough [manual contact tracers](https://www.centerforhealthsecurity.org/our-work/pubs_archive/pubs-pdfs/2020/200410-national-plan-to-contact-tracing.pdf){:target="_blank"}, many countries across the world decided to build their own smartphone app which uses bluetooth beacons from the user mobile devices to register contacts i.e. other nearby mobile bluetooth transmissions.
+
+
+### How does Mobile Contact Tracing Work?
+
+Mobile contact tracing is enabled by smartphone apps which are installed on peoples phones which use the bluetooth interface and transmit information. The app installed on another users' phone receives this information when both the users are in close range to each other, indicating a contact. Both the devices at this point store the information of their contacts which is the bluetooth ID transmitted by the user devices. 
+
+
+This is where, things get interesting and different. There are multiple variants of these applications being deployed by governments across the world. A **centralized** version of the application like that of the United Kingdom built [recommended by NHS](https://www.telegraph.co.uk/technology/2020/06/04/nhs-app-track-trace-coronavirus-download/){:target="_blank"} or [Aarogya Setu](https://www.mygov.in/aarogya-setu-app/){:target="_blank"} recommended by the Indian government have servers run by the government or a third party service to which all the apps send the data about potential contacts, these include the bluetooth IDs which were read and could also include the GPS coordinates which are being logged by the app on the phone indicating the users' location to the servers. The users' device periodically sends their GPS coordinate to the server and requests for a risk profile to indicate if the person might be at risk because of potential contact or an increased number of infections in the surrounding area indicating the need for a quarantine.
+
+However, this is very different from some other variants of the applications which are **decentralized**, the [UW-PACT](https://arxiv.org/pdf/2004.03544.pdf){:target="_blank"} Covidsafe is an example of such an application with other [variants](https://github.com/DP-3T/documents/blob/master/DP3T%20White%20Paper.pdf){:target="_blank"} existing. Decentralized applications work in a similar manner, except that the phones provide anonymized IDs to the central server which are downloaded and computed locally on the personal device to detect potential contact and the need to quarantine. The following infographic from [Nature](https://www.nature.com/articles/d41586-020-01514-2){:target="_blank"} might make this easier to understand. Recently, both Google and Apple have teamed together to develop and deploy exposure notification systems and most American states plan to use it as an [underlying framework](https://www.technologyreview.com/2020/05/20/1002001/apple-and-googles-covid-tracing-tech-has-been-released-to-22-countries/){:target="_blank"} for their apps.
+
+<p align="center">
+<img src="/img/mobile_contact_tracing_modes.jpg" alt="An infographic from BBC explaining the difference between centralised and decentralised apps">
+</p>
+
+### Great, Looks like these apps work, so what's the issue?
+
+I am glad you asked, In many countries, citizens are living under a lockdown with their civil liberties heavily curtailed. The centralized approach taken by many governments across the world is based on the idea that people are prepared to trade off elements of their privacy if it enables them to return to how their life was before the pandemic. Apps such as these need to clearly articulate not just the overall benefit to the citizens but also to the potential risks due to inaccuracies in reporting the potential infected cases in the area, and potential privacy implications due to data which is being captured from the citizens' phone.
+
+Many mobile apps attempting to do contact tracing either using their own protocols, or those set forth by companies like Apple/Google partnerships do not indicate that the usage of these apps by citizens are for altruistic reasons or beneficence for those living along with them in their communiity or neighborhood, instead, the usage of these applications have been [illegally _mandated_](https://www.bbc.com/news/world-asia-india-52659520){:target="_blank"} and are actively used to decide if [people can travel](https://www.thehindu.com/news/national/aarogya-setu-app-mandatory-for-travel-on-15-special-trains-railways/article31563211.ece){:target="_blank"}, go to places of work or more.
+
+While mobile contact tracing applications are technologies for social good, reckless rollout while plagued with [security issues](https://github.com/nic-delhi/AarogyaSetu_Android/issues/25){:target="_blank"} and concerns with [security on older devices](https://github.com/nic-delhi/AarogyaSetu_Android/issues/51){:target="_blank"}, which are overlooked by application developers, can cause serious concerns at not only the correctness of the information provided but also potential data leakages. Additionally, a lot of the applications are not open source making it harder to scrutinize the data which is being recorded and sent to the governments or understand the extent to which privacy has been traded off. The ideal mobile contact tracing application upholds privacy guarantees, while ensuring correctness of the reporting and analysis of the exposure risk. The app and the surrounding services should guarantee periodic data destruction and be highly transparent. As indicated, in the example security vulnerabilities above, in addition to transparency, the government and the respective application developers need to be actively engaged with the community to resolve potential bugs and address enhancement requests.
+
+But, isn't privacy a first world problem? What if I have nothing to hide? Why should I be worried? At first, this argument seems to make complete sense but looking closely it suggests that privacy is something only criminals desire which is incorrect. All humans have the right to privacy, it'd be embarassing if all the details about someone's life were exposed publicly. At home, a fence, a curtain, window blinds, locks are ways to ensure privacy and not indicators of any malicious or criminal behavior which makes privacy a fundamental right which when violated has serious consequences. Privacy as an abstract concept is only concerning when it is gone. Let us try to not make that happen.
+
+### Well, okay, I am convinced that we need to use applications which uphold our privacy and are cryptographically secure, but what happens if they aren't? Is it as big of a problem as you portray it to be?
+
+Absolutely yes! Before we go ahead and answer that, let us consider the scale of impact. India has [1.35 Billion people](http://datatopics.worldbank.org/world-development-indicators/){:target="_blank"} and an update by Telecom Regulatory Authority of India (TRAI) in 2019 mentions that there are approximately [1.2 Billion mobile phone users](https://trai.gov.in/sites/default/files/PR_No.22of2019_0.pdf){:target="_blank"} and an expected [860 Million](https://economictimes.indiatimes.com/tech/hardware/smartphone-users-expected-to-rise-84-to-859m-by-2022-assocham-pwc-study/articleshow/69260487.cms){:target="_blank"} smart phone users in the country. Other estimates show that [90.58%](https://www.statista.com/statistics/262157/market-share-held-by-mobile-operating-systems-in-india/){:target="_blank"} of these smart phone users run Android. Optimistically assuming that the other 10% of the smart phone population runs iOS on Apple devices or KaiOS on the Jio Phone, the bluetooth, smartphone based approach has alienated and prevented 490 Million people from access to it. To put this in perspective, this is 1.5 times the population of the United States of America posing the large problem of equity for those who do not use smartphones or cannot afford them. Additionally, because of the quick turn around time for engineering such applications, software developers do not have enough time to follow the due release processes leading to inaccessibility of these apps for visually impaired and blind users.
+
+
+Now, lets get back to the privacy concerns, Approximately 10% of the Android users in India use older versions of Android i.e. Android Marshmallow or below and are at risk of insecure cryptographic implementations as indicated in the [security vulnerability](https://github.com/nic-delhi/AarogyaSetu_Android/issues/51){:target="_blank"}. The State of Karnataka and the government [released a PDF](https://bangaloremirror.indiatimes.com/bangalore/others/government-publishes-details-of-19240-home-quarantined-people-to-keep-a-check/articleshow/74807807.cms){:target="_blank"} with the names and addresses of 19000 international passengers who were quarantined in Bangalore resulting in [social stigma](https://www.ndtv.com/india-news/coronavirus-outbreak-man-beaten-up-for-sneezing-in-public-in-maharashtra-kolhapur-2197618){:target="_blank"}, [exclusion](https://www.huffingtonpost.in/entry/quarantined-govt-coronavirus-india_in_5e7da410c5b661492264fd39){:target="_blank"} by communities and even [death threats](https://www.nytimes.com/2020/03/04/us/stigma-coronavirus.html){:target="_blank"} not just in India but worldwide. The lack of privacy and the ability to find out cases in a given area by changing GPS coordinates and retrieving information from the server can help easily identify the infected individual putting them through increased social harassment by their neighbours. _Lateral surveillance_ is the implicit and explicit form of "watching your neighbors" which is non-hierarchial. While in supportive communities, this could result in community support for the infected person, the inverse of being ostracized is very much a possible reality.
+
+
+The use of centralized contact tracing mechanism post a significant and an intrinsic risk of continuing to track the movement of the population beyond the pandemic. To make matters worse, additional techniques such as [drone based surveillance](https://technopolice.fr/blog/4-millions-deuros-et-600-nouveaux-drones-le-gouvernement-senfonce-dans-la-technopolice/?preview=true&_thumbnail_id=1130){:target="_blank"} and [facial recognition]() are being actively used to enforce quarantines and social distancing guidelines along with electronic bracelets. Use of AI systems with poorly curated and non-representative training datasets deployed in the real world have biases and target poor communities and people of color. Additionally, such systems coupled with the relaxation of the [surveillance acts]() and collaboration with the law enforcement authorities pose significant new challenges for [physical](https://www.aljazeera.com/programmes/newsfeed/2020/03/indian-police-force-coronavirus-lockdown-offenders-200330102752863.html){:target="_blank"} and online safety and privacy of the citizens.
+
+
+[Surveillance capitalism](https://www.theguardian.com/books/2019/feb/02/age-of-surveillance-capitalism-shoshana-zuboff-review){:target="_blank"} has mastered the art of bait and switch, historically [2], we've seen through surveillance capitalism that once access to data has been gained, it is rarely relinquished. Though technology like contact tracing applications, drones and facial recognition hold a lot of promise, there is an immense need for researchers and practioners to understand how the data can be used, implications of data leakage and a heavy need for gathering consent in non-obfuscated ways e.g. privacy policies.
+
+
+Personally, I am a proponent for usage of technology to solve social problems. With the increasing tension between privacy and the responsibilities to bring back our communities and the promise of digital contact tracing, we need to build systems which uphold privacy and security guarantees while still ensuring that the core functionality of the application isn't violated. When such systems exist in the decentralized approach to the problem, the insistence of policy makers and governments on privacy invasive centralized approaches to solve digital contact tracing is disappointing and needs to be fixed worldwide.
+
+
+---
+
