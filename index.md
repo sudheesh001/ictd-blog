@@ -7,6 +7,12 @@ permalink: /
 has_children: false
 ---
 
+<style>
+	.notransformtext {
+		text-transform: none;
+	}
+</style>
+
 # Blog Posts
 {: .fs-9 }
 
@@ -15,7 +21,7 @@ has_children: false
 {% for node in pages_list %}
 	{% if node.date %}
 ### {{node.date | date_to_string }} : [{{node.title}}]({{node.url}})
-#### {{node.summary | truncatewords: 40}}
+<h4 class="notransformtext" id="{{node.summary | truncatewords: 40}}">{{node.summary | truncatewords: 40}}</h4>
 	{% endif %}
 {% endfor %}
 
